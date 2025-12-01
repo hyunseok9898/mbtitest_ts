@@ -1,4 +1,3 @@
-import React from 'react';
 import { ProgressBar } from 'react-bootstrap';
 import styled from 'styled-components';
 import { QuestionData } from '../stores/Question/QuestionData';

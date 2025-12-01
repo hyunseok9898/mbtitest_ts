@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Image } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
