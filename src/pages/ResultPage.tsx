@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { Image } from 'react-bootstrap';
-import { useSearchParams } from 'react-router-dom';
+import { Image, Button } from 'react-bootstrap';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { ResultData } from '../stores/Result/ResultData';
 import Header from '../components/Header';
 import { IResult } from '../stores/Result/types';
+import KakaoShareButton from '../components/KakaoShareButton';
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,9 +50,19 @@ const BestDesc = styled.div`
   color: blue;
 `;
 export default function ResultPage(): React.ReactElement {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const mbti = searchParams.get('mbti');
-  const testResult = ResultData.find((cat: IResult) => cat.best === mbti);
+  const testResult: IResult = ResultData.find(
+    (cat: IResult) => cat.best === mbti,
+  ) ?? {
+    id: 0,
+    name: '',
+    best: '',
+    mbti: '',
+    desc: '',
+    image: '',
+  };
   const friendCat = ResultData.find(friend => friend.best === testResult?.mbti);
 
   return (
@@ -78,6 +89,16 @@ export default function ResultPage(): React.ReactElement {
           <BestDesc>
             나의 고양이와 잘맞는 형제묘로는 {friendCat?.name} 추천드려요.
           </BestDesc>
+          <div style={{ marginBottom: 30 }}>
+            <Button
+              onClick={() => navigate('/')}
+              className="btn-danger"
+              style={{ width: 170, marginTop: 20, marginRight: 20 }}
+            >
+              테스트 다시하기
+            </Button>
+            <KakaoShareButton data={testResult} />
+          </div>
         </ContentsWrapper>
       </Wrapper>
     </>
