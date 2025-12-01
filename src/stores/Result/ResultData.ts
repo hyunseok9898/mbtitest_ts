@@ -14,7 +14,7 @@ import Ragdoll from '../../assets/cat/ragdoll.jpg';
 import Russianblue from '../../assets/cat/russianblue.jpg';
 import Scottishfold from '../../assets/cat/scottishfold.jpg';
 import Siamese from '../../assets/cat/siamese.jpg';
-import Sphinx from '../../assets/cat/sphinx.jpg';
+import Sphinx from '../../assets/cat/Sphinx.jpg';
 import Turkishangora from '../../assets/cat/turkishangora.jpg';
 
 export const ResultData: IResult[] = [
