@@ -65,7 +65,13 @@ export const MainPage = (): React.ReactElement => {
             테스트 시작하기
           </Button>
         </ContentsWrapper>
-        <div className="adfit" />
+        <ins
+          className="kakao_ad_area"
+          style={{ display: 'block' }}
+          data-ad-unit="DAN-xxxxxxx"
+          data-ad-width="320"
+          data-ad-height="100"
+        ></ins>
       </Wrapper>
     </>
   );
