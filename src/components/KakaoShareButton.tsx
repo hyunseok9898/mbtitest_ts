@@ -6,20 +6,25 @@ interface Props {
   data: IResult;
 }
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 export default function KakaoShareButton(props: Props) {
-  const Kakao = (window as any).Kakao;
+  const Kakao = window.Kakao;
   const url = 'https://mbtitest-ts-one.vercel.app/';
   const resultUrl = window.location.href;
 
   React.useEffect(() => {
-    if (!Kakao.isInitialized()) {
+    if (Kakao && !Kakao.isInitialized()) {
       Kakao.init('956eca165754dc86bc48aa213a0ff14d');
     }
   }, []);
 
   const shareKakao = () => {
-    Kakao.Share.createDefaultButton({
-      container: '#kakaotalk-share-btn',
+    Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
         title: '😻 예비집사 판별기 결과😻',
@@ -29,11 +34,6 @@ export default function KakaoShareButton(props: Props) {
           mobileWebUrl: resultUrl,
           webUrl: resultUrl,
         },
-      },
-      social: {
-        likeCount: 10,
-        commentCount: 20,
-        sharedCount: 30,
       },
       buttons: [
         {
